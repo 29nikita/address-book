@@ -50,5 +50,6 @@ For questions or inquiries, please contact:
 - Name: Nikita Agarwal
 - Email: agarwal.97nikita@gmail.com
 - Project Link: https://github.com/29nikita/address-book
+- Hosting Link: https://address-book-7e763.web.app/
 
 
