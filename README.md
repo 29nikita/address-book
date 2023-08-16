@@ -1,27 +1,54 @@
-# AddressBook
+# Address Book CRUD Application with Firebase and Efficient Search using Binary Search Tree (BST)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+This project is a CRUD (Create, Read, Update, Delete) application built using Angular 15, Firebase, and a Binary Search Tree (BST) for efficient search functionality. The application allows users to manage their address book by performing basic operations on address entries and utilizes a BST to quickly search for addresses by person's name.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Create, Read, Update, and Delete address entries.
+2. Real-time synchronization of data with Firebase Firestore.
+3. Utilization of Binary Search Tree (BST) for efficient address search functionality.
+4. Responsive user interface for seamless usage on different devices.
+5. Built with Angular 15, Firebase Firestore, and other modern web technologies.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone the repository to your local machine using:
+```
+git clone https://gitlab.com/my-projects5153132/address-book.git
+``` 
 
-## Build
+2. Navigate to the project directory:
+```
+cd address-book
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Install the project dependencies using:
+```
+npm install
+```
 
-## Running unit tests
+4. Configure Firebase:
+    - Create a Firebase project on the Firebase Console.
+    - Obtain your Firebase configuration by going to Project settings -> General -> Your apps -> Firebase SDK snippet -> Config.
+    - Replace the Firebase configuration in src/environments/environment.ts with your own configuration.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+5. Run the development server:
+```
+ng serve
+```
+The application will be accessible at http://localhost:4200.
 
-## Running end-to-end tests
+## Usage
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Launch the application by navigating to http://localhost:4200 in your web browser.
+2. Use the CRUD operations to manage your address book entries.
+3. The search functionality utilizes a Binary Search Tree (BST) for efficient searching.Enter a search term in the provided input field to quickly find matching addresses.
 
-## Further help
+## Contact
+For questions or inquiries, please contact:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Name: Nikita Agarwal
+- Email: agarwal.97nikita@gmail.com
+- Project Link: https://github.com/29nikita/address-book
+
+
