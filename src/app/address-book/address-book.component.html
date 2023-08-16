@@ -1,0 +1,151 @@
+<main>
+    <section class="header-section">
+        <div class="header-section-first-sub-section">
+            <svg style="height: 1.8em; margin-right:  0.625em; cursor: pointer;" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512">
+                <path
+                    d="M96 0C60.7 0 32 28.7 32 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zM208 288h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H144c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zM496 192c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V336z" />
+            </svg>
+            <h1 class="header-section-heading">{{title}}</h1>
+        </div>
+        <div class="add-address">
+            <svg style="cursor: pointer;" (click)="onClickAdd(template, 'Add Details')"
+                xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                <path
+                    d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+            </svg>
+        </div>
+    </section>
+</main>
+
+<div class="search-bar-div">
+    <span class="search-bar">
+        <svg class="search-bar-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <path
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+        </svg>
+    </span><input type="text" placeholder="Search by Name" class="search-input" [(ngModel)] = "searchKey" (keyup)="searchAddress()">
+</div>
+
+<div class="table-layout">
+    <table class="main-table">
+        <tr class="table-heading">
+            <td>Name</td>
+            <td>Mobile No.</td>
+            <td class="address">Address</td>
+            <td>Actions</td>
+        </tr>
+        <tr class="table-data" *ngFor="let address of filteredAddresses | paginate: { itemsPerPage: 5, currentPage: p }">
+            <td>{{address.Name}}</td>
+            <td>{{address.Mobile}}</td>
+            <td>{{address.Flat_No}}, {{address.Area}}, {{address.City}}, {{address.State}}, {{address.Pincode}},
+                {{address.Country}}</td>
+            <td class="actions">
+                <svg style="cursor: pointer;" (click)="onClickUpdateButton(template, 'Update Details', address)"
+                    xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512">
+                    <path
+                        d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                </svg>
+                <svg style="cursor: pointer;" (click)="deleteData(address.id)" style="cursor: pointer;"
+                    xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512">
+                    <path
+                        d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm88 200H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
+                </svg>
+            </td>
+        </tr>
+    </table>
+    <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<ng-template #template>
+    <div class="add-and-update-modal">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{dialogTitle}}</h4>
+            <svg (click)="onCancel()" style="fill: #d13d3d; cursor: pointer;" xmlns="http://www.w3.org/2000/svg"
+                height="1.5em" viewBox="0 0 512 512">
+                <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+            </svg>
+        </div>
+        <div class="modal-body">
+            <table class="details-table" [formGroup]="addressGroup">
+                <tr>
+                    <td><label for="name">Full Name</label></td>
+                    <td><input type="text" id="name" formControlName="Name" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && form['Name'].errors }"></td>
+                </tr>
+                <div *ngIf="submitted && form['Name'].errors" class="invalid-feedback">
+                    <div *ngIf="form['Name'].errors['required']">Name is required</div>
+                </div>
+                <tr>
+                    <td>
+                        <label for="mobile">Mobile Number</label>
+                    </td>
+                    <td><input type="tel" id="mobile" formControlName="Mobile" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && form['Mobile'].errors }">
+                    </td>
+                </tr>
+                <div *ngIf="submitted && form['Mobile'].errors" class="invalid-feedback">
+                    <div *ngIf="form['Mobile'].errors['required']">Mobile Number is required</div>
+                    <div *ngIf="form['Mobile'].errors['minlength'] || form['Mobile'].errors['maxlength']">
+                        Mobile number must be of 10 digits
+                    </div>
+                </div>
+                <tr>
+                    <td><label for="flat">Flat No.</label></td>
+                    <td><input type="text" id="flat" formControlName="Flat_No"></td>
+                </tr>
+                <tr>
+                    <td><label for="area">Area</label></td>
+                    <td><input type="text" formControlName="Area" id="area" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && form['Area'].errors }"></td>
+                </tr>
+                <div *ngIf="submitted && form['Area'].errors" class="invalid-feedback">
+                    <div *ngIf="form['Area'].errors['required']">Area is required</div>
+                </div>
+                <tr>
+                    <td><label for="pincode">Pincode</label></td>
+                    <td><input type="text" formControlName="Pincode" id="pincode" placeholder="6 digits [0-9] PIN code"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && form['Pincode'].errors }"></td>
+                </tr>
+                <div *ngIf="submitted && form['Pincode'].errors" class="invalid-feedback">
+                    <div *ngIf="form['Pincode'].errors['required']">Pincode is required</div>
+                    <div *ngIf="form['Pincode'].errors['minlength'] || form['Pincode'].errors['maxlength']">
+                        Pincode must be of 6 digits
+                    </div>
+                </div>
+                <tr>
+                    <td><label for="city">Town/City</label></td>
+                    <td><input type="text" id="city" formControlName="City" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && form['City'].errors }"></td>
+                </tr>
+                <div *ngIf="submitted && form['City'].errors" class="invalid-feedback">
+                    <div *ngIf="form['City'].errors['required']">City is required</div>
+                </div>
+                <tr>
+                    <td><label for="state">State</label></td>
+                    <td><input type="text" id="state" formControlName="State" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && form['State'].errors }"></td>
+                </tr>
+                <div *ngIf="submitted && form['State'].errors" class="invalid-feedback">
+                    <div *ngIf="form['State'].errors['required']">State is required</div>
+                </div>
+                <tr>
+                    <td><label for="country">Country</label></td>
+                    <td><input type="text" id="country" formControlName="Country" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && form['Country'].errors }"></td>
+                </tr>
+                <div *ngIf="submitted && form['Country'].errors" class="invalid-feedback">
+                    <div *ngIf="form['Country'].errors['required']">Country is required</div>
+                </div>
+            </table>
+        </div>
+        <div class="modal-footer form-group">
+            <button type="button" *ngIf="addButtonClicked" style="cursor: pointer;" class="btn btn-default"
+                (click)="addData()">Submit</button>
+            <button type="button" *ngIf="updateButtonClicked" style="cursor: pointer;" class="btn btn-default"
+                (click)="updateData(selectedAddress.id)">Update</button>
+            <button type="button" style="cursor: pointer;" class="btn btn-default" (click)="onCancel()">Close</button>
+        </div>
+    </div>
+</ng-template>
